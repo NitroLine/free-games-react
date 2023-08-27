@@ -23,13 +23,26 @@ import {
 } from "pure-react-carousel"
 import "pure-react-carousel/dist/react-carousel.es.css"
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons"
+import { useMemo } from "react"
 function GamePage() {
     const { id } = useParams()
     const navigate = useNavigate()
     const { data: game, isLoading, error } = useGetGameQuery(id ?? "")
+    const releaseDate = useMemo(
+        () =>
+            game
+                ? new Date(game.release_date).toLocaleDateString("ru", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                  })
+                : "-",
+        [game]
+    )
     if (!id) {
         return <ErrorNotFoundPage />
     }
+
     return (
         <Center m={6}>
             {isLoading && (
@@ -131,6 +144,7 @@ function GamePage() {
                         <ListItem>Издатель: {game.publisher}</ListItem>
                         <ListItem>Разработчик: {game.developer}</ListItem>
                         <ListItem>Жанр: {game.genre}</ListItem>
+                        <ListItem>Дата релиза: {releaseDate}</ListItem>
                     </UnorderedList>
                     <Heading size={"sm"}>Описание</Heading>
                     <Text px={2}>{game.description}</Text>
