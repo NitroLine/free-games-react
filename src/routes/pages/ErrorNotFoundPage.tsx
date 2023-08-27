@@ -1,12 +1,11 @@
-import {Center, Heading, Text} from "@chakra-ui/react";
+import { Center, Heading, Text } from "@chakra-ui/react"
 
-
-function ErrorNotFoundPage(){
+function ErrorNotFoundPage() {
     return (
-        <Center flexDirection={'column'} m={5} p={5}>
+        <Center flexDirection={"column"} m={5} p={5}>
             <Heading>Ничего не найдено</Heading>
             <Text>Попробуйте вернуться назад</Text>
         </Center>
     )
 }
-export default ErrorNotFoundPage;
+export default ErrorNotFoundPage

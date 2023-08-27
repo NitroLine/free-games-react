@@ -1,35 +1,34 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
-import {Game, GameFull} from "../types/game";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+import { Game, GameFull } from "../types/game"
 
-// initialize an empty api service that we'll inject endpoints into later as needed
 export const gameApi = createApi({
     keepUnusedDataFor: 5 * 60 * 1000,
-    baseQuery: fetchBaseQuery({baseUrl:'/'}),
+    baseQuery: fetchBaseQuery({ baseUrl: "/" }),
     endpoints: (builder) => ({
         getGamesList: builder.query<Game[], SearchParam>({
             query: (params) => ({
-                url:  '/games',
+                url: "/games",
                 params: {
                     platform: params.platform,
                     category: params.category,
-                    'sort-by': params.sortBy,
-                }
-            })
+                    "sort-by": params.sortBy,
+                },
+            }),
         }),
         getGame: builder.query<GameFull, string>({
             query: (id) => ({
-                url: '/game',
-                params: { id }
-            })
-        })
+                url: "/game",
+                params: { id },
+            }),
+        }),
     }),
-    reducerPath: 'gameApi',
+    reducerPath: "gameApi",
 })
 
 export interface SearchParam {
-    platform?: string,
-    category?: string,
-    sortBy?: string,
+    platform?: string
+    category?: string
+    sortBy?: string
 }
 
-export const {useGetGamesListQuery, useGetGameQuery} = gameApi
+export const { useGetGamesListQuery, useGetGameQuery } = gameApi

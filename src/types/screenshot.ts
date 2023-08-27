@@ -1,4 +1,4 @@
 export interface Screenshot {
-    id: number,
-    image: string,
+    id: number
+    image: string
 }

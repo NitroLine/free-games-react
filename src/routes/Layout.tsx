@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
 import { Box } from "@chakra-ui/react"
-import {Navbar} from "../components/total/Navbar";
+import { Navbar } from "../components/total/Navbar"
 
 function Layout() {
     return (
@@ -10,7 +10,7 @@ function Layout() {
             flexDirection="column"
             bg="yellow.50"
         >
-            <Navbar/>
+            <Navbar />
             <Box flexGrow="1">
                 <Outlet />
             </Box>
